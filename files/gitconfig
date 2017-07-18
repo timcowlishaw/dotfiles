@@ -1,0 +1,44 @@
+[user]
+        name=Tim Cowlishaw
+        email=tim@timcowlishaw.co.uk
+[color]
+        diff = auto
+        status = auto
+        branch = auto
+        interactive = auto
+        ui = true
+        pager = true
+
+[color "branch"]
+        current = yellow reverse
+        local = yellow
+        remote = green
+
+[color "diff"]
+        meta = yellow
+        frag = magenta
+        old = red
+        new = green
+
+[color "status"]
+        added = yellow
+        changed = green
+        untracked = cyan
+[alias]
+	permission-reset = !git diff -p -R | grep -E \"^(diff|(old|new) mode)\" | git apply
+  add-nw = !sh -c 'git diff -w --no-color "$@" | git apply --cached --ignore-whitespace' -
+[push]
+	default = simple
+[branch]
+	autosetuprebase = always
+[github]
+	user = timcowlishaw
+	password = "G,z]A{j8->.L~:_#_37oz"
+[core]
+	excludesfile = /Users/tim/.gitignore_global
+[filter "media"]
+	clean = git media clean %f
+	smudge = git media smudge %f
+	required = true
+[branch "master"]
+	mergeoptions = --no-ff

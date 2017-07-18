@@ -1,0 +1,14 @@
+--type-add=ruby=.sass,.feature
+--ignore-dir=log
+--ignore-dir=vendor
+--ignore-dir=tmp
+--ignore-dir=images
+--ignore-dir=.kerl
+--ignore-dir=deps
+--ignore-dir=ebin
+--ignore-dir=.eunit
+--ignore-dir=release
+--ignore-dir=cbenv
+--ignore-dir=coverage
+--ignore-dir=target
+--ignore-dir=project/target

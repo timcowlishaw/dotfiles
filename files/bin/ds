@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# a shell script to print directory size summaries
+# rick vannorman 20oct2004
+# sub@neverslow.com
+
+du -ck | awk '{
+   dir = $0;                # preserve the input recordd
+   x = gsub(/\//,"",dir);   # count the slashes, nesting level
+   if (x != 1) next;        # ignore all but top level
+   size = $1 / 1024;        # convert 1024k block count to meg
+   $1 = "";                 # blank the input field
+   printf("%12.3fM %s\n",size,$0);  # display user friendly output
+}'

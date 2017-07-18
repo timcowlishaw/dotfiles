@@ -1,0 +1,15 @@
+{
+    "mapping": {
+        "files/ackrc": "~/.ackrc",
+        "files/aws": "~/.aws",
+        "files/gitconfig": "~/.gitconfig",
+        "files/gitignore_global": "~/.gitignore_global",
+        "files/spacemacs": "~/.spacemacs",
+        "files/tmux.conf": "~/.tmux.conf",
+        "files/bash_profile": "~/.bash_profile",
+        "files/bashrc": "~/.bashrc",
+        "files/ctags": "~/.ctags",
+        "files/bin": "~/bin"
+    },
+    "secrets_dir": "~/Dropbox/.dotfiles_secret/"
+}
