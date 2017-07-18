@@ -148,9 +148,13 @@ shopt -s checkwinsize
 stty stop undef #unmap ctrl-S
 alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 ssh-add 2>/dev/null
-source /usr/local/share/gem_home/gem_home.sh
-export NVM_DIR=~/.nvm
-. $(brew --prefix nvm)/nvm.sh
+if [[ -s "/user/local/share/gem_home/gem_home.sh" ]]; then
+	source /usr/local/share/gem_home/gem_home.sh
+fi
+if [[ -s $(brew --prefix nvm)/nvm.sh ]]; then
+	export NVM_DIR=~/.nvm
+	. $(brew --prefix nvm)/nvm.sh
+fi
 alias emacs=/Applications/Emacs.app/Contents/MacOS/Emacs
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
