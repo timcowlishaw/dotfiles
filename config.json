@@ -6,12 +6,13 @@
         "files/gitignore_global": "~/.gitignore_global",
         "files/spacemacs": "~/.spacemacs",
         "files/tmux.conf": "~/.tmux.conf",
-	"files/tmux-macosx.conf": "~/.tmux-macosx.conf",
-	"files/tmux-linux.conf": "~/.tmux-linux.conf",
+        "files/tmux-macosx.conf": "~/.tmux-macosx.conf",
+        "files/tmux-linux.conf": "~/.tmux-linux.conf",
         "files/bash_profile": "~/.bash_profile",
         "files/bashrc": "~/.bashrc",
         "files/ctags": "~/.ctags",
-        "files/bin": "~/bin"
+        "files/bin": "~/bin",
+        "files/jupyter": "~/.jupyter"
     },
     "secrets_dir": "~/Dropbox/.dotfiles_secret/"
 }
