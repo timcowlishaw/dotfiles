@@ -135,12 +135,10 @@ if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
 
 # TMUX
-echo "tmux"
 if which tmux 2>&1 >/dev/null; then
   # if no session is started, start a new session
   test -z ${TMUX} && tmux
 fi
-echo "end tmux"
 export VM_MEMORY=4096
 export SBT_OPTS="-Xmx1536M -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -Xss2M  -Duser.timezone=GMT"
 export ANDROID_HOME=/usr/local/opt/android-sdk
@@ -152,7 +150,7 @@ ssh-add 2>/dev/null
 if [[ -s "/user/local/share/gem_home/gem_home.sh" ]]; then
 	source /usr/local/share/gem_home/gem_home.sh
 fi
-command -v brew
+command -v brew >  /dev/null 2>&1
 if [ $? -eq 0 ]; then
 	if [[ -s $(brew --prefix nvm)/nvm.sh ]]; then
 		export NVM_DIR=~/.nvm
@@ -162,7 +160,7 @@ fi
 if [[ -e /Applications/Emacs.app/Contents/MacOS/Emacs ]]; then
 	alias emacs=/Applications/Emacs.app/Contents/MacOS/Emacs
 fi
-command -v  pyenv
+command -v  pyenv > /dev/null 2>&1
 if [ $? -eq 0 ]; then
 	eval "$(pyenv init -)"
 	eval "$(pyenv virtualenv-init -)"
