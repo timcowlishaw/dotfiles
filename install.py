@@ -9,14 +9,6 @@ with open("config.json") as f:
 mapping = conf["mapping"]
 base_dir = path.dirname(path.realpath(__file__))
 
-secrets_base_dir = path.realpath(path.expanduser(conf["secrets_dir"]))
-print secrets_base_dir
-secrets_conf = None
-with open(path.join(secrets_base_dir, "config.json")) as f:
-    secrets_conf = json.load(f)
-secrets_mapping = secrets_conf["mapping"]
-
-
 def link_files(files, base_path):
     for key in files:
         source = path.realpath(path.join(base_path, key))
@@ -31,6 +23,13 @@ def link_files(files, base_path):
         os.symlink(source, target)
 
 link_files(mapping, base_dir)
-link_files(secrets_mapping, secrets_base_dir)
+
+secrets_base_dir = path.realpath(path.expanduser(conf["secrets_dir"]))
+if path.isdir(secrets_base_dir):
+	secrets_conf = None
+	with open(path.join(secrets_base_dir, "config.json")) as f:
+	    secrets_conf = json.load(f)
+	secrets_mapping = secrets_conf["mapping"]
+	link_files(secrets_mapping, secrets_base_dir)
 
 
