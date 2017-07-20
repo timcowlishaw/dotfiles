@@ -100,7 +100,7 @@ export EDITOR="vim"
 export GIT_EDITOR="vim"
 export GEM_EDITOR="vim"
 
-export PATH=b:bin:/Users/tim/bin:$PATH
+export PATH=b:bin:~/bin:~/.local/bin:$PATH
 export PATH=/Users/tim/.activator:/Users/tim/.cabal/bin:/Users/tim/.sp5repl:/Users/tim/node_modules/.bin:/$PATH
 export PATH=Applications/MATLAB_R2015a.app/bin:/usr/texbin:/Developer/NVIDIA/CUDA-5.5/bin:$PATH
 export PATH=/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home/bin:/usr/local/bin:$PATH
@@ -135,11 +135,12 @@ if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
 
 # TMUX
+echo "tmux"
 if which tmux 2>&1 >/dev/null; then
   # if no session is started, start a new session
   test -z ${TMUX} && tmux
 fi
-
+echo "end tmux"
 export VM_MEMORY=4096
 export SBT_OPTS="-Xmx1536M -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -Xss2M  -Duser.timezone=GMT"
 export ANDROID_HOME=/usr/local/opt/android-sdk
@@ -151,11 +152,21 @@ ssh-add 2>/dev/null
 if [[ -s "/user/local/share/gem_home/gem_home.sh" ]]; then
 	source /usr/local/share/gem_home/gem_home.sh
 fi
-if [[ -s $(brew --prefix nvm)/nvm.sh ]]; then
-	export NVM_DIR=~/.nvm
-	. $(brew --prefix nvm)/nvm.sh
+command -v brew
+if [ $? -eq 0 ]; then
+	if [[ -s $(brew --prefix nvm)/nvm.sh ]]; then
+		export NVM_DIR=~/.nvm
+		. $(brew --prefix nvm)/nvm.sh
+	fi
 fi
-alias emacs=/Applications/Emacs.app/Contents/MacOS/Emacs
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-export VAULT_KEY=`cat ~/.ssh/id_rsa | shasum | cut -d' ' -f1`
+if [[ -e /Applications/Emacs.app/Contents/MacOS/Emacs ]]; then
+	alias emacs=/Applications/Emacs.app/Contents/MacOS/Emacs
+fi
+command -v  pyenv
+if [ $? -eq 0 ]; then
+	eval "$(pyenv init -)"
+	eval "$(pyenv virtualenv-init -)"
+fi
+if [[ -e ~/.ssh/id_rsa ]]; then
+	export VAULT_KEY=`cat ~/.ssh/id_rsa | shasum | cut -d' ' -f1`
+fi
